@@ -2,7 +2,6 @@ package teema1;
 
 import java.util.Arrays;
 import java.util.Scanner;
-
 /**
  * NB! Lahenda käesolev ülesanne konsoolis. Pole vaja JavaFXi siia segada.
  *
@@ -16,4 +15,36 @@ import java.util.Scanner;
  *    nii vertikaalselt kui ka horisontaalselt?
  */
 public class Peamurdja3_laevad {
+    public static void main(String[] args)   {
+        int suurus = 0;
+        while (suurus < 2 || suurus > 50) {
+            System.out.println("Kui suur m2nguv2li peaks olema? (2-50)");
+            Scanner sc = new Scanner(System.in);
+            suurus = sc.nextInt();
+        }
+        char[] manguLaud = new char[suurus];
+
+        int laevadeArv = -1;
+        while (laevadeArv < 0 || laevadeArv > suurus) {
+            System.out.format("Kui palju laevu peaks olema? (0-%d)", suurus);
+            Scanner sc = new Scanner(System.in);
+            laevadeArv = sc.nextInt();
+        }
+
+        for (int i = 0; i < manguLaud.length; i++) {
+            manguLaud[i] = '#';
+        }
+
+        while (laevadeArv > 0) {
+            int y = (int) Math.floor(Math.random() * manguLaud.length);
+            if (manguLaud[y] == '#') {
+                manguLaud[y] = 'V';
+                laevadeArv--;
+            }
+        }
+
+        System.out.print(manguLaud);
+    }
+
+
 }
