@@ -23,10 +23,15 @@ public class Peamurdja3_laevad {
             suurus = sc.nextInt();
         }
         char[] manguLaud = new char[suurus];
+        char[] visualLaud = new char[suurus];
+
+        for (int i = 0; i < visualLaud.length; i++) {
+            visualLaud[i] = '#';
+        }
 
         int laevadeArv = -1;
         while (laevadeArv < 0 || laevadeArv > suurus) {
-            System.out.format("Kui palju laevu peaks olema? (0-%d)", suurus);
+            System.out.format("Kui palju laevu peaks olema? (0-%d)%n", suurus);
             Scanner sc = new Scanner(System.in);
             laevadeArv = sc.nextInt();
         }
@@ -35,7 +40,10 @@ public class Peamurdja3_laevad {
             manguLaud[i] = '#';
         }
 
-        while (laevadeArv > 0) {
+        int shipsCount = laevadeArv;
+        int shipsCount2 = laevadeArv;
+
+            while (laevadeArv > 0) {
             int y = (int) Math.floor(Math.random() * manguLaud.length);
             if (manguLaud[y] == '#') {
                 manguLaud[y] = 'V';
@@ -43,8 +51,41 @@ public class Peamurdja3_laevad {
             }
         }
 
-        System.out.print(manguLaud);
+        int positsioon = -1;
+        boolean gameover = false;
+        int pommitusi = 0;
+
+
+        while (!gameover) {
+            System.out.println(visualLaud);
+            positsioon = -1;
+            while (positsioon < 0 || suurus > visualLaud.length) {
+                System.out.format("Ytle positsioon mida pommitada (0-%d)%n", visualLaud.length);
+                Scanner sc = new Scanner(System.in);
+                positsioon = sc.nextInt();
+            }
+
+            if (manguLaud [positsioon] == 'V'){
+                System.out.println("Pihtas");
+                manguLaud [positsioon] = 'x';
+                visualLaud [positsioon] = 'x';
+                shipsCount--;
+            }
+            else if (manguLaud [positsioon] == 'x' || manguLaud [positsioon] == '0'){
+                System.out.println("Siia oled juba pommitanud");
+            }
+            else {
+                System.out.println("M66das");
+                manguLaud [positsioon] = '0';
+                visualLaud [positsioon] = '0';
+            }
+            pommitusi++;
+
+            if (shipsCount == 0) {
+                gameover = true;
+                System.out.format("K6ik laevad leitud! %d laeva leidmiseks kulus %d pommi!", shipsCount2, pommitusi);
+            }
+
+        }
     }
-
-
 }
