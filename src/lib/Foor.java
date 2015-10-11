@@ -58,7 +58,7 @@ public class Foor {
 
     private int StseeniSuurus = 700;
     private int ValguseLaius  = StseeniSuurus / 4;
-	private FooriSuund Suund  = DEFAULT;
+	public FooriSuund Suund  = DEFAULT;
     private Color[]  V2rvid   = { Color.GRAY, Color.RED,    Color.YELLOW, Color.SPRINGGREEN };
     private Circle[] Tuled    = { null,       new Circle(), new Circle(), new Circle()      };
 	private Label    InfoTekst= new Label();
